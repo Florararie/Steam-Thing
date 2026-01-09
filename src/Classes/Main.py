@@ -20,13 +20,13 @@ from Classes.GUI.APIDialog import SteamApiDialog
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-    config = JSONConfig("./config.json")
-    def __init__(self):
-        super().__init__()
+    def __init__(self, root_path, parent=None):
+        super().__init__(parent)
         self.setupUi(self)
+        self.config = JSONConfig(root_path / 'config.json')
         self.games, self.filtered_games = [], []
         self.show_installed_only = False
-        self.cache_dir = "Cache"
+        self.cache_dir = root_path / "Cache"
 
         self.status_label = QLabel("Games Loaded: 0")
         self.statusBar.addWidget(self.status_label)
@@ -150,12 +150,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def on_loading_complete(self):
         """Handles UI updates once game loading is complete."""
-        #self.listWidget.setEnabled(True)
-        #self.random_pushButton.setEnabled(True)
         self.filter_games()
         self.sort_games()
         self.filter_checkBox.setEnabled(self.game_library.install_filter)
-        #self.filter_checkBox.setChecked(not self.game_library.install_filter)
 
 
     def pick_random_game(self):

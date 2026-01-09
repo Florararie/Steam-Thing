@@ -58,6 +58,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Restore last used filter setting
         last_used_filter = self.config.get_value(1, "last_used_filter") or "Alphabetical"
         self.filter_comboBox.setCurrentText(last_used_filter)
+        install_filter = self.config.get_value(1, "installed_filter") or False
+        self.filter_checkBox.setChecked(install_filter)
 
         self.listWidget.setContextMenuPolicy(Qt.CustomContextMenu)
         self.listWidget.customContextMenuRequested.connect(self.show_context_menu)
@@ -102,9 +104,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def load_games_async(self):
         """Loads games asynchronously using a separate thread."""
-        #self.listWidget.setEnabled(False)
-        #self.random_pushButton.setEnabled(False)
-
         self.steam_path, self.api_key, self.steam_id, _ = self.return_config_values()
         self.game_library = GameLibrary(self.steam_path, self.api_key, self.steam_id)
         self.loader_thread = GameLoaderThread(self.game_library, self.exclusion_file, self.cache_dir)
@@ -182,6 +181,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def filter_installed_games(self):
         self.show_installed_only = self.filter_checkBox.isChecked()
+        self.config.add_entry(1, 'installed_filter', self.filter_checkBox.isChecked(), "bool")
         self.filter_games()
 
 
@@ -308,11 +308,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             exclusions = {}
         exclusions[game_name] = str(game_id)
         self.exclusion_plainTextEdit.setPlainText(json.dumps(exclusions, indent=4))
-
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>584</width>
+    <height>513</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Steam Picker V2 - Flora &lt;3</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 10pt &quot;Trebuchet MS&quot;;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Main</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLineEdit" name="filter_lineEdit">
+          <property name="cursor">
+           <cursorShape>IBeamCursor</cursorShape>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Search name or App ID ...</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QComboBox" name="filter_comboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>8</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>375</width>
+              <height>0</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>Alphabetical</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Last Played</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Last Updated</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Size on Disk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Playtime High to Low</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Playtime Low to High</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="filter_checkBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>1</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Installed</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QListWidget" name="listWidget"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="random_pushButton">
+          <property name="text">
+           <string>Random Game</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QProgressBar" name="progressBar">
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Exclusion</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QPlainTextEdit" name="exclusion_plainTextEdit"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>584</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_New_Exclusion_File"/>
+    <addaction name="actionSave_Open_Exclusion_File"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionChoose_Random_Game"/>
+    <addaction name="separator"/>
+    <addaction name="actionUpdate_Steam_Path"/>
+    <addaction name="actionUpdate_API_information"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen_New_Exclusion_File">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/folder.png</normaloff>:/Images/folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open New Exclusion File</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave_Open_Exclusion_File">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/save.png</normaloff>:/Images/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Open Exclusion File</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionChoose_Random_Game">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/random.png</normaloff>:/Images/random.png</iconset>
+   </property>
+   <property name="text">
+    <string>Choose Random Game</string>
+   </property>
+  </action>
+  <action name="actionUpdate_Steam_Path">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/steam.png</normaloff>:/Images/steam.png</iconset>
+   </property>
+   <property name="text">
+    <string>Update Steam Path</string>
+   </property>
+  </action>
+  <action name="actionUpdate_API_information">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/steam.png</normaloff>:/Images/steam.png</iconset>
+   </property>
+   <property name="text">
+    <string>Update API information</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
